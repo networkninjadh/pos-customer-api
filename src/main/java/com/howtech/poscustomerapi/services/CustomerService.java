@@ -92,6 +92,7 @@ public class CustomerService {
 					customerStore.setStoreId(store.getStoreId());
 					customerStore.setOpenForDelivery(store.isOpenForDelivery());
 					customerStore.setStoreName(store.getStoreName());
+					// TODO come back to fix the model vs DTO structure
 					// customerStore.setStoreCity(store.getAddress().getCity());
 					// customerStore.setStoreCountry(store.getAddress().getCountry());
 					// customerStore.setStoreState(store.getAddress().getProvince());
