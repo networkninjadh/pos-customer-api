@@ -5,7 +5,7 @@ package com.howtech.poscustomerapi.exceptions;
  * @author Damond Howard
  * @apiNote Exception to be thrown when a customer is not found in the database
  */
-public class CustomerNotFoundException extends Exception {
+public class CustomerNotFoundException extends RuntimeException {
 
 	/**
 	 * 

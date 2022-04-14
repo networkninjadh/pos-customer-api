@@ -5,7 +5,7 @@ package com.howtech.poscustomerapi.exceptions;
  * @author Damond Howard
  * @apiNote exception to be thrown when a store does not exist in the database
  */
-public class StoreNotFoundException extends Exception {
+public class StoreNotFoundException extends RuntimeException {
 
 	/**
 	 * ,
