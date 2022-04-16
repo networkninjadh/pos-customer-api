@@ -18,7 +18,6 @@ import com.howtech.poscustomerapi.DTOs.StoreToCustomerDto;
 import com.howtech.poscustomerapi.DTOs.UserInfo;
 import com.howtech.poscustomerapi.exceptions.CustomerNotFoundException;
 import com.howtech.poscustomerapi.exceptions.StoreNotFoundException;
-import com.howtech.poscustomerapi.models.Customer;
 import com.howtech.poscustomerapi.services.CustomerService;
 
 /**
@@ -55,11 +54,11 @@ public class CustomerController {
 	/**
 	 * 
 	 * @param userInfo
-	 * @return return the current logged in users Customer object
+	 * @return return the current logged in users CustomerDto object
 	 * @throws CustomerNotFoundException
 	 */
 	@GetMapping("/me")
-	public Customer getMyCustomerInfo(UserInfo userInfo)
+	public com.howtech.poscustomerapi.models.Customer getMyCustomerInfo(UserInfo userInfo)
 			throws CustomerNotFoundException {
 		return customerService.getCustomerInfo(userInfo);
 	}
@@ -71,7 +70,7 @@ public class CustomerController {
 	 * @throws CustomerNotFoundException
 	 */
 	@GetMapping("/customer/{id}")
-	public Customer getCustomer(@PathVariable Long customerId, UserInfo userInfo)
+	public com.howtech.poscustomerapi.models.Customer getCustomer(@PathVariable Long customerId, UserInfo userInfo)
 			throws CustomerNotFoundException {
 		return customerService.getCustomer(customerId, userInfo);
 	}
@@ -81,7 +80,7 @@ public class CustomerController {
 	 * @return the JSON list of all customers in the customerRepository
 	 */
 	@GetMapping("/customers")
-	public List<Customer> getCustomers(UserInfo userInfo) {
+	public List<com.howtech.poscustomerapi.models.Customer> getCustomers(UserInfo userInfo) {
 		return customerService.getCustomers(userInfo);
 	}
 

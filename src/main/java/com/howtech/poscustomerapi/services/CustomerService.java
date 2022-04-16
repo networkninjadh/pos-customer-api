@@ -1,5 +1,7 @@
 package com.howtech.poscustomerapi.services;
 
+import com.howtech.poscustomerapi.DTOs.*;
+import com.howtech.poscustomerapi.models.Customer;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
@@ -9,13 +11,8 @@ import java.util.stream.Collectors;
 
 import com.howtech.poscustomerapi.models.CustomerAddressInfo;
 import com.howtech.poscustomerapi.models.StoreDto;
-import com.howtech.poscustomerapi.DTOs.CustomerDto;
-import com.howtech.poscustomerapi.DTOs.InventoryToCustomerDto;
-import com.howtech.poscustomerapi.DTOs.StoreToCustomerDto;
-import com.howtech.poscustomerapi.DTOs.UserInfo;
 import com.howtech.poscustomerapi.exceptions.CustomerNotFoundException;
 import com.howtech.poscustomerapi.exceptions.StoreNotFoundException;
-import com.howtech.poscustomerapi.models.Customer;
 import com.howtech.poscustomerapi.repositories.CustomerRepository;
 
 /**
@@ -55,7 +52,7 @@ public class CustomerService {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		return "Customer saved to database";
+		return "CustomerDto saved to database";
 	}
 
 	public Customer getCustomerInfo(UserInfo userInfo) throws CustomerNotFoundException {
@@ -74,7 +71,7 @@ public class CustomerService {
 
 	public String deleteCustomer(Long customerId, UserInfo userInfo) {
 		customerRepository.deleteById(customerId);
-		return "Customer with " + customerId + " has been deleted";
+		return "CustomerDto with " + customerId + " has been deleted";
 	}
 
 	public String deleteCustomers() {
