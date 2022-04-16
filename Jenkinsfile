@@ -1,4 +1,6 @@
-  agent any
+pipeline {
+
+    agent any
 
     stages {
 
@@ -33,9 +35,7 @@
         /*
         stage('Test') {
         }
-
         stage('package') {
-
         }
         */
     }
