@@ -69,9 +69,10 @@ public class CustomerController {
 	 * @return the JSON object containing the customer's data
 	 * @throws CustomerNotFoundException
 	 */
-	@GetMapping("/customer/{id}")
-	public com.howtech.poscustomerapi.models.Customer getCustomer(@PathVariable Long customerId, UserInfo userInfo)
+	@GetMapping("/customer/{customer_id}")
+	public com.howtech.poscustomerapi.models.Customer getCustomer(@PathVariable(name="customer_id") Long customerId, UserInfo userInfo)
 			throws CustomerNotFoundException {
+		LOGGER.info("Retrieving Customer with ID " + customerId);
 		return customerService.getCustomer(customerId, userInfo);
 	}
 
@@ -86,7 +87,7 @@ public class CustomerController {
 
 	/**
 	 * 
-	 * @param id the id of the customer to delete
+	 * @param customerId the id of the customer to delete
 	 * @return a string saying that the customer has been deleted
 	 */
 	@DeleteMapping("/delete/{id}")

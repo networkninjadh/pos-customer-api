@@ -61,6 +61,7 @@ public class CustomerService {
 	}
 
 	public Customer getCustomer(Long customerId, UserInfo userInfo) throws CustomerNotFoundException {
+		LOGGER.info("CustomerService: Retrieving Customer with id " + customerId);
 		return customerRepository.findById(customerId)
 				.orElseThrow(() -> new CustomerNotFoundException(customerId));
 	}
