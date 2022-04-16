@@ -47,6 +47,7 @@ public class CustomerController {
 	 */
 	@PostMapping("/customer/new")
 	public String addCustomer(@RequestBody CustomerDto customer, UserInfo userInfo) {
+		LOGGER.info("CustomerController: Creating new customer with username " + userInfo.getUsername());
 		return customerService.createCustomer(customer, userInfo);
 	}
 	// TODO verify payment method for customer
@@ -60,6 +61,7 @@ public class CustomerController {
 	@GetMapping("/me")
 	public com.howtech.poscustomerapi.models.Customer getMyCustomerInfo(UserInfo userInfo)
 			throws CustomerNotFoundException {
+		LOGGER.info("CustomerController: Return user info for currently logged in Customer");
 		return customerService.getCustomerInfo(userInfo);
 	}
 
@@ -72,7 +74,7 @@ public class CustomerController {
 	@GetMapping("/customer/{customer_id}")
 	public com.howtech.poscustomerapi.models.Customer getCustomer(@PathVariable(name="customer_id") Long customerId, UserInfo userInfo)
 			throws CustomerNotFoundException {
-		LOGGER.info("Retrieving Customer with ID " + customerId);
+		LOGGER.info("CustomerController: Retrieving Customer with ID " + customerId);
 		return customerService.getCustomer(customerId, userInfo);
 	}
 
@@ -82,6 +84,7 @@ public class CustomerController {
 	 */
 	@GetMapping("/customers")
 	public List<com.howtech.poscustomerapi.models.Customer> getCustomers(UserInfo userInfo) {
+		LOGGER.info("CustomerController: Return a list of all Customers");
 		return customerService.getCustomers(userInfo);
 	}
 
@@ -92,6 +95,7 @@ public class CustomerController {
 	 */
 	@DeleteMapping("/delete/{id}")
 	public String deleteCustomer(@PathVariable Long customerId, UserInfo userInfo) {
+		LOGGER.info("CustomerController: Delete a Customer with ID " + customerId);
 		return customerService.deleteCustomer(customerId, userInfo);
 	}
 
@@ -101,6 +105,7 @@ public class CustomerController {
 	 */
 	@DeleteMapping("/delete/all")
 	public String deleteCustomers() {
+		LOGGER.info("CustomerController: Delete all Customers");
 		return customerService.deleteCustomers();
 	}
 
@@ -111,6 +116,7 @@ public class CustomerController {
 	 */
 	@GetMapping("/stores")
 	public List<StoreToCustomerDto> getStores(UserInfo userInfo) {
+		LOGGER.info("CustomerController: Retrieve a list of all Stores for a Customer");
 		return customerService.getStores(userInfo);
 	}
 
@@ -123,6 +129,7 @@ public class CustomerController {
 	@GetMapping("/store/{store_id}/inventory")
 	public InventoryToCustomerDto getInventory(@PathVariable(name = "store_id") Long storeId)
 			throws StoreNotFoundException {
+		LOGGER.info("CustomerController: Retrieve a list of Inventory for a Customer");
 		return customerService.getInventory(storeId);
 	}
 }

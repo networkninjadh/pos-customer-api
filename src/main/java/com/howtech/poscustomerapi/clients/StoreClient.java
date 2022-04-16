@@ -1,6 +1,8 @@
 package com.howtech.poscustomerapi.clients;
 
 import com.howtech.poscustomerapi.models.StoreDto;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
@@ -11,23 +13,27 @@ import java.util.Objects;
 
 @Component
 public class StoreClient {
+
+    private final Logger LOGGER = LoggerFactory.getLogger(StoreClient.class);
+
     private final RestTemplate restTemplate;
 
     private final String URL = "http://localhost:8083";
-    private final String FIND_ALL = "/store-api/stores";
-    private final String STORE = "/store-api/store/";
 
-    public StoreClient() {
-        restTemplate = new RestTemplate();
+    public StoreClient(RestTemplate restTemplate) {
+        this.restTemplate = restTemplate;
     }
 
     public List<StoreDto> findAll() {
+        LOGGER.info("StoreClient: Retrieve a list of all Stores for a Customer");
+        String FIND_ALL = "/store-api/stores";
         ResponseEntity<StoreDto[]> response = restTemplate
                 .getForEntity(URL + FIND_ALL, StoreDto[].class);
         return Arrays.asList(Objects.requireNonNull(response.getBody()));
     }
 
     public StoreDto findById(Long storeId) {
+        String STORE = "/store-api/store/";
         ResponseEntity<StoreDto> response = restTemplate
                 .getForEntity(URL + STORE + storeId, StoreDto.class);
         return response.getBody();
