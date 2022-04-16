@@ -16,13 +16,11 @@ public class StoreClient {
 
     private final Logger LOGGER = LoggerFactory.getLogger(StoreClient.class);
 
-    private final RestTemplate restTemplate;
+    private final RestTemplate restTemplate = new RestTemplate();
 
     private final String URL = "http://localhost:8083";
 
-    public StoreClient(RestTemplate restTemplate) {
-        this.restTemplate = restTemplate;
-    }
+    public StoreClient() {}
 
     public List<StoreDto> findAll() {
         LOGGER.info("StoreClient: Retrieve a list of all Stores for a Customer");
