@@ -34,7 +34,8 @@ pipeline {
             steps {
                 sh 'mvn clean package'
                 sh 'docker build -t pos-customer-api .'
-                sh 'docker run --network="host" -d -p8085:8085 pos-customer-api'
+                sh 'echo $dockerhub_PSW | docker login -u $dockerhub_USR --password-stdin'
+                sh 'docker push networkninjadh/pos-customer-api:latest'
             }
         }
 
